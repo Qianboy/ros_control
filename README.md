@@ -18,7 +18,7 @@ sudo apt-get install libncurses5-dev
 sudo apt-get install doxygen
 ```
 ### gcc>4.8(for c++11 support).
-remove all gcc related stuff, then following the instruction in [this](http://askubuntu.com/questions/466651/how-do-i-use-the-latest-gcc-on-ubuntu) forum:
+following the instruction in [this](http://askubuntu.com/questions/466651/how-do-i-use-the-latest-gcc-on-ubuntu) forum:
 ```
 #!bash
 sudo apt-get remove gcc-*
@@ -28,7 +28,7 @@ sudo apt-get install gcc-4.9 g++-4.9
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 60 --slave /usr/bin/g++ g++ /usr/bin/g++-4.9
 ```
 ### [ROS jade](http://wiki.ros.org/jade/)
-For detailed description of installation see [here](http://wiki.ros.org/jade/Installation/Ubuntu). However, the following instructions will guide you through the installation for this project. This has been tested on a clean installation of [Ubuntu 14.04](http://releases.ubuntu.com/14.04/).
+For detailed description of installation see [here](http://wiki.ros.org/jade/Installation/Ubuntu). However, the following instructions will guide you through the installation for this project. This has been tested on a clean installation of [Ubuntu 14.04](http://releases.ubuntu.com/14.04/). For installation on gentoo please refer to [this](http://wiki.ros.org/Installation/Gentoo) page (there are some small caveats regarding the pythonpath, see below in FAQ).
 ```
 #!bash
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
@@ -109,8 +109,9 @@ Then you can build with:
 cd path/to/ros_control
 catkin_make
 ```
-#### If the build fails throwing an error like 'Could not find a package configuration file provided by "gazebo_ros_control"',
-this is because for some mysterious reason gazebo_ros_pkgs installation is degenrate. But that won't stop us. We will build it from source. 
+# FAQ
+#### My build fails throwing an error like 'Could not find a package configuration file provided by "gazebo_ros_control"'...
+This is because for some mysterious reason gazebo_ros_pkgs installation is degenerate. But that won't stop us. We will build it from source. 
 ```
 #!bash
 mkdir -p ~/ros_ws/src
@@ -124,12 +125,18 @@ source /opt/ros/jade/setup.bash
 catkin_make_isolated --install --install-space /opt/ros/jade/ -DCMAKE_BUILD_TYPE=Release
 exit
 ```
-#### If the build fails, complaining about missing headers,
-this is probably because ros cannot find the headers it just created. You need to source the devel/setup.bash:
+#### My build fails, complaining about missing headers...
+This is probably because ros cannot find the headers it just created. You need to source the devel/setup.bash, the run catkin again:
 ```
 #!bash
 source devel/setup.bash
 catkin_make
+```
+#### On gentoo, when using roslaunch to start the simulation, spawn_model throws an error, complaining about missing module _tf. The reason is some annoying pythonpath conflict. I could resolve it by copying everything related to tf into one folder:
+```
+#!bash
+sudo mv /opt/ros/jade/lib64/python2.7/site-packages/tf/* /opt/ros/jade/lib/python2.7/site-packages/tf
+sudo mv /opt/ros/jade/lib64/python2.7/site-packages/sensor_msgs/* /opt/ros/jade/lib/python2.7/site-packages/sensor_msgs
 ```
 # Run it
 ## with real roboy
