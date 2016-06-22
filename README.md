@@ -132,7 +132,8 @@ This is probably because ros cannot find the headers it just created. You need t
 source devel/setup.bash
 catkin_make
 ```
-#### On gentoo, when using roslaunch to start the simulation, spawn_model throws an error, complaining about missing module _tf. The reason is some annoying pythonpath conflict. I could resolve it by copying everything related to tf into one folder:
+#### On gentoo, when using roslaunch to start the simulation, spawn_model throws an error, complaining about missing module _tf. 
+The reason is some annoying pythonpath conflict. I could resolve it by copying everything related to tf into one folder:
 ```
 #!bash
 sudo mv /opt/ros/jade/lib64/python2.7/site-packages/tf/* /opt/ros/jade/lib/python2.7/site-packages/tf
