@@ -58,20 +58,32 @@ public:
 	/**
 	 * This is the main loop
 	 */
-	void main_loop();
+	void main_loop(controller_manager::ControllerManager *controllerManager);
 private:
-	/*
-	 * This function loads the controllers registered to the individual joint interfaces
-	 * @param controlmode Position, Velocity or Force
-	 * @return success
-	 */
-	bool loadControllers(int controlmode);
-	/*
-	 * This function unloads the controllers registered to the individual joint interfaces
-	 * @param controlmode Position, Velocity or Force
-	 * @return success
-	 */
-	bool unloadControllers(int controlmode);
+    /*
+    * This function loads the controllers registered to the individual joint interfaces
+    * @param controllers names of controllers
+    * @return success
+    */
+    bool loadControllers(vector<string> controllers);
+    /*
+     * This function unloads the controllers registered to the individual joint interfaces
+     * @param controllers names of controllers
+     * @return success
+     */
+    bool unloadControllers(vector<string> controllers);
+    /*
+     * This function starts the controllers registered to the individual joint interfaces
+     * @param controllers names of controllers
+     * @return success
+     */
+    bool startControllers(vector<string> controllers);
+    /*
+     * This function stops the controllers registered to the individual joint interfaces
+     * @param controllers names of controllers
+     * @return success
+     */
+    bool stopControllers(vector<string> controllers);
 	/**
 	 * SERVICE This function record the trajectories of the requested motors
 	 * @param req vector<int8> containing requested motor ids
@@ -119,7 +131,6 @@ private:
 	//! state strings describing each state
 	std::map<ActionState, std::string> state_strings = {
 			{ WaitForInitialize,     "Waiting for initialization of controllers" },
-			{ LoadControllers,       "Loading controllers" },
 			{ Controlloop,           "Control loop" },
 			{ PublishState,           "Publish roboy state" },
 			{ Recording,             "Recording" }
