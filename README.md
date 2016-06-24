@@ -1,5 +1,5 @@
 ## Description ##
-This project provides ros control hierarchy for roboy (v2.0) hardware, i.e. myoMuscles controlled via ganglia on flexraybus. If you have any questions feel free to contact one of the [rosifying team](https://devanthro.atlassian.net/wiki/display/RM/ROSifying+Myorobotics+Development) members, or [simulations](https://devanthro.atlassian.net/wiki/display/SIM/Simulations) team.
+This project provides ros control hierarchy for roboy (v2.0) hardware, i.e. myoMuscles controlled via ganglia on flexraybus. If you have any questions feel free to contact one of the [rosifying team](https://devanthro.atlassian.net/wiki/display/RM/ROSifying+Myorobotics+Development) members.
 # Dependencies #
 ### [ROS indigo](http://wiki.ros.org/indigo/)
 For detailed description of installation see [here](http://wiki.ros.org/indigo/Installation/Ubuntu)
