@@ -34,15 +34,13 @@ NOTE: Please follow the installation instructions for [flexrayusbinterface](http
 Then you can build with:
 ```
 #!bash
-cd path/to/ros_hierarchy
-catkin_init_workspace
-rm CMakeLists.txt
+cd path/to/ros_control
 catkin_make
 ```
 If the build fails, this is because ros cannot find the headers. You need to source the setup.bash. Use the following commands to add this to your bashrc.
 ```
 #!bash
-cd path/to/ros_hierarchy
+cd path/to/ros_control
 echo "source $(pwd)/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 catkin_make
@@ -52,9 +50,8 @@ catkin_make
 ```
 #!bash
 
-cd path/to/ros_hierarchy
+cd path/to/ros_control
 source devel/setup.bash
-roscore &
 roslaunch myo_master roboy.launch
 ```
 The roboy.launch file loads 24 motors with corresponding joint controllers onto the ros parameter server. 
@@ -159,7 +156,7 @@ please follow instructions in [flexrayusbinterface](https://github.com/Roboy/fle
 Generate a doxygen documentation using the following command:
 ```
 #!bash
-cd path/to/ros_hierarchy
+cd path/to/ros_control
 doxygen Doxyfile
 ```
 The documentation is put into the doc folder.
