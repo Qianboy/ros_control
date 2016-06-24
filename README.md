@@ -1,16 +1,25 @@
 ## Description ##
-Ros hierarchy provides ros control hierarchy for roboy (v2.0) hardware via flexray hardware interface and gazebp simulation.
-If you have any questions feel free to contact one of the [rosifying team](https://devanthro.atlassian.net/wiki/display/RM/ROSifying+Myorobotics+Development) members.
+Ros control provides ros control hierarchy for roboy (v2.0) hardware. If you have any questions feel free to contact one of the team members from rosifying team, or simulations team.
+If you have any questions feel free to contact one of the [rosifying team](https://devanthro.atlassian.net/wiki/display/RM/ROSifying+Myorobotics+Development) members, or [simulations](https://devanthro.atlassian.net/wiki/display/SIM/Simulations) team.
 # Dependencies #
-ROS, for detailed description of installation see [here](http://wiki.ros.org/indigo/Installation/Ubuntu)
+### [ROS indigo](http://wiki.ros.org/indigo/)
+For detailed description of installation see [here](http://wiki.ros.org/indigo/Installation/Ubuntu)
 ```
 #!bash
 sudo apt-get install ros-indigo-desktop-full
 sudo apt-get install ros-indigo-controller-interface ros-indigo-controller-manager ros-indigo-control-toolbox
+```
+### ncurses
+```
+#!bash
 sudo apt-get install libncurses5-dev 
+```
+### doxygen[OPTIONAL]
+```
+#!bash
 sudo apt-get install doxygen
 ```
-project also depends on the [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) and [common_utilities](https://github.com/Roboy/common_utilities).
+The project also depends on the [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) and [common_utilities](https://github.com/Roboy/common_utilities). 
 The repos can be cloned with the folowing commands, where the submodule commands attempt to pull the [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) and [common_utilities](https://github.com/Roboy/common_utilities).
 ```
 #!bash
@@ -21,7 +30,7 @@ git submodule update
 ```
 
 # Build #
-Please follow the installation instructions for [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) before proceeding.
+NOTE: Please follow the installation instructions for [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) before proceeding.
 Then you can build with:
 ```
 #!bash
@@ -49,10 +58,10 @@ roscore &
 roslaunch myo_master roboy.launch
 ```
 The roboy.launch file loads 24 motors with corresponding joint controllers onto the ros parameter server. 
-The commandline will inform you that roboy is not ready. The program is waiting for a motor initialize request.
+The program is the waiting for a motor initialize request.
 This will typically come from the [GUI](https://devanthro.atlassian.net/wiki/display/RGIR/Roboy+GUI+in+ROS+Home).
 
-In general, we tried to make the whole system also controllable from the commandline via ROS [services](http://wiki.ros.org/rosservice) 
+In general, we tried to make the whole system also controllable from the commandline or any other ros node via ROS [services](http://wiki.ros.org/rosservice) 
 and ROS [topics](http://wiki.ros.org/rostopic)
 ```
 #!bash
