@@ -23,7 +23,7 @@ The repos can be cloned with the folowing commands, where the submodule commands
 ```
 #!bash
 git clone https://github.com/Roboy/ros_control
-cd ros_hierarchy
+cd ros_control
 git submodule init
 git submodule update
 ```
