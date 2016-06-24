@@ -1,39 +1,45 @@
 ## Description ##
-Ros hierarchy provides ros control hierarchy for roboy (v2.0) hardware via flexray hardware interface and gazebp simulation.
-If you have any questions feel free to contact one of the [rosifying team](https://devanthro.atlassian.net/wiki/display/RM/ROSifying+Myorobotics+Development) members.
+This project provides ros control hierarchy for roboy (v2.0) hardware, i.e. myoMuscles controlled via ganglia on flexraybus. If you have any questions feel free to contact one of the [rosifying team](https://devanthro.atlassian.net/wiki/display/RM/ROSifying+Myorobotics+Development) members.
 # Dependencies #
-ROS, for detailed description of installation see [here](http://wiki.ros.org/indigo/Installation/Ubuntu)
+### [ROS indigo](http://wiki.ros.org/indigo/)
+For detailed description of installation see [here](http://wiki.ros.org/indigo/Installation/Ubuntu)
 ```
 #!bash
 sudo apt-get install ros-indigo-desktop-full
 sudo apt-get install ros-indigo-controller-interface ros-indigo-controller-manager ros-indigo-control-toolbox
+```
+### ncurses
+```
+#!bash
 sudo apt-get install libncurses5-dev 
+```
+### doxygen[OPTIONAL]
+```
+#!bash
 sudo apt-get install doxygen
 ```
-project also depends on the [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) and [common_utilities](https://github.com/Roboy/common_utilities).
+The project also depends on the [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) and [common_utilities](https://github.com/Roboy/common_utilities). 
 The repos can be cloned with the folowing commands, where the submodule commands attempt to pull the [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) and [common_utilities](https://github.com/Roboy/common_utilities).
 ```
 #!bash
 git clone https://github.com/Roboy/ros_control
-cd ros_hierarchy
+cd ros_control
 git submodule init
 git submodule update
 ```
 
 # Build #
-Please follow the installation instructions for [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) before proceeding.
+NOTE: Please follow the installation instructions for [flexrayusbinterface](https://github.com/Roboy/flexrayusbinterface) before proceeding.
 Then you can build with:
 ```
 #!bash
-cd path/to/ros_hierarchy
-catkin_init_workspace
-rm CMakeLists.txt
+cd path/to/ros_control
 catkin_make
 ```
 If the build fails, this is because ros cannot find the headers. You need to source the setup.bash. Use the following commands to add this to your bashrc.
 ```
 #!bash
-cd path/to/ros_hierarchy
+cd path/to/ros_control
 echo "source $(pwd)/devel/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 catkin_make
@@ -43,16 +49,15 @@ catkin_make
 ```
 #!bash
 
-cd path/to/ros_hierarchy
+cd path/to/ros_control
 source devel/setup.bash
-roscore &
 roslaunch myo_master roboy.launch
 ```
 The roboy.launch file loads 24 motors with corresponding joint controllers onto the ros parameter server. 
-The commandline will inform you that roboy is not ready. The program is waiting for a motor initialize request.
+The program is the waiting for a motor initialize request.
 This will typically come from the [GUI](https://devanthro.atlassian.net/wiki/display/RGIR/Roboy+GUI+in+ROS+Home).
 
-In general, we tried to make the whole system also controllable from the commandline via ROS [services](http://wiki.ros.org/rosservice) 
+In general, we tried to make the whole system also controllable from the commandline or any other ros node via ROS [services](http://wiki.ros.org/rosservice) 
 and ROS [topics](http://wiki.ros.org/rostopic)
 ```
 #!bash
@@ -150,7 +155,7 @@ please follow instructions in [flexrayusbinterface](https://github.com/Roboy/fle
 Generate a doxygen documentation using the following command:
 ```
 #!bash
-cd path/to/ros_hierarchy
+cd path/to/ros_control
 doxygen Doxyfile
 ```
 The documentation is put into the doc folder.
